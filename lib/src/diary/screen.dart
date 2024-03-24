@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_fridge/grocery_listings/hotel_home_screen.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -70,23 +71,36 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Pick Image'),
             ),
             ElevatedButton(
-              onPressed: () async {
-                if (selectedImage != null) {
-                  try {
-                    var results = await detectObjects(selectedImage!);
-                    setState(() {
-                      detectionResults = results;
-                      errorMessage = null;
-                    });
-                  } catch (e) {
-                    setState(() {
-                      errorMessage = "Failed to detect objects: $e";
-                    });
-                  }
-                }
-              },
-              child: Text('Detect Objects'),
-            ),
+  onPressed: () async {
+    if (selectedImage != null) {
+      try {
+        var results = await detectObjects(selectedImage!);
+        setState(() {
+          detectionResults = results;
+          errorMessage = null;
+        });
+        // Extract tags from detection results
+        List<String> tags = results.map<String>((result) => result['Tag']).toList();
+        // Navigate to GroceryScreen with tags
+        // MyHomePage.dart
+// This part of the code is fine as you've provided it. Just ensure that 
+// after detection, it navigates to GroceryScreen correctly with the tags.
+
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => GroceryScreen(tags: tags),
+  ),
+);} catch (e) {
+        setState(() {
+          errorMessage = "Failed to detect objects: $e";
+        });
+      }
+    }
+  },
+  child: Text('Detect Objects'),
+),
+
             if (detectionResults != null)
               Expanded(
                 child: ListView.builder(
