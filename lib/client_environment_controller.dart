@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:smart_fridge/custom_drawer/drawer.dart';
-import 'package:smart_fridge/grocery_listings/hotel_home_screen.dart';
+import 'package:smart_fridge/grocery_listings/fridgeitems_screen.dart';
 import 'package:smart_fridge/meal_planning/home_design_course.dart';
 import 'package:smart_fridge/src/bottom_navigation_view/navigation_bar_view.dart';
 import 'package:smart_fridge/src/config/themes/app_theme.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_fridge/grocery_listings/detected_tags_repository.dart';
-import 'package:smart_fridge/grocery_listings/hotel_home_screen.dart';
+import 'package:smart_fridge/grocery_listings/fridgeitems_screen.dart';
 
 
 class MyHomePage extends StatefulWidget {
