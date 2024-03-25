@@ -269,7 +269,7 @@ class _AppClientEnvironmentControllerState
                     );
                     break;
                   case 1:
-                    tabBody = GroceryScreen(tags: [],);
+                    tabBody = GroceryScreen();
                     break;
                   case 2:
                     tabBody = NotificationScreen();

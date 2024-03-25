@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_fridge/grocery_listings/detected_tags_repository.dart';
 import 'package:smart_fridge/grocery_listings/hotel_home_screen.dart';
 
 
@@ -71,33 +72,34 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Pick Image'),
             ),
             ElevatedButton(
-  onPressed: () async {
-    if (selectedImage != null) {
-      try {
-        var results = await detectObjects(selectedImage!);
-        setState(() {
-          detectionResults = results;
-          errorMessage = null;
-        });
-        // Extract tags from detection results
-        List<String> tags = results.map<String>((result) => result['Tag']).toList();
-        // Navigate to GroceryScreen with tags
-        // MyHomePage.dart
-// This part of the code is fine as you've provided it. Just ensure that 
-// after detection, it navigates to GroceryScreen correctly with the tags.
+ // This replaces the existing code in your `onPressed` method for the 'Detect Objects' button
+onPressed: () async {
+  if (selectedImage != null) {
+    try {
+      // Right after fetching the tags from your Flask server
+var results = await detectObjects(selectedImage!);
+List<String> tags = results.map<String>((result) => result['Tag']).toList();
+DetectedTagsRepository.instance.tags = tags;
 
-Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => GroceryScreen(tags: tags),
-  ),
-);} catch (e) {
-        setState(() {
-          errorMessage = "Failed to detect objects: $e";
-        });
-      }
+      setState(() {
+        detectionResults = results;
+        errorMessage = null;
+      });
+      // Assuming 'results' is already a List<String> of tags; adjust if your data structure is different
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GroceryScreen(),
+        ),
+      );
+    } catch (e) {
+      setState(() {
+        errorMessage = "Failed to detect objects: $e";
+      });
     }
-  },
+  }
+},
   child: Text('Detect Objects'),
 ),
 

@@ -1,29 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:smart_fridge/grocery_listings/detected_tags_repository.dart';
 
-// Assuming the detected tags represent the full title of the grocery items you want to display.
+// class GroceryScreen extends StatefulWidget {
+//   final List<String> tags; // Detected tags are passed here
+
+//   const GroceryScreen({Key? key, required this.tags}) : super(key: key);
+
+//   @override
+//   _GroceryScreenState createState() => _GroceryScreenState();
+// }
+
+// class _GroceryScreenState extends State<GroceryScreen> {
+//   late List<String> uniqueTags;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Convert the list to a set to remove duplicates, then back to a list
+//     uniqueTags = widget.tags.toSet().toList();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Detected Items in fridge'),
+//       ),
+//       body: ListView.builder(
+//         itemCount: uniqueTags.length,
+//         itemBuilder: (context, index) {
+//           // Use the uniqueTags list for displaying the items
+//           return ListTile(
+//             title: Text(uniqueTags[index]),
+//             // If you had additional information per tag, you could display it here
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// Modify GroceryScreen to not require tags to be passed via constructor
 class GroceryScreen extends StatefulWidget {
-  final List<String> tags; // Detected tags are passed here
-
-  const GroceryScreen({Key? key, required this.tags}) : super(key: key);
+  const GroceryScreen({Key? key}) : super(key: key);
 
   @override
   _GroceryScreenState createState() => _GroceryScreenState();
 }
 
 class _GroceryScreenState extends State<GroceryScreen> {
+  List<String> get uniqueTags => DetectedTagsRepository.instance.tags.toSet().toList();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detected Grocery Items'),
+        title: Text('Detected Items in Fridge'),
       ),
       body: ListView.builder(
-        itemCount: widget.tags.length,
+        itemCount: uniqueTags.length,
         itemBuilder: (context, index) {
-          // Directly use the tags to display the grocery items
           return ListTile(
-            title: Text(widget.tags[index]),
-            // If you had additional information per tag, you could display it here
+            title: Text(uniqueTags[index]),
           );
         },
       ),
