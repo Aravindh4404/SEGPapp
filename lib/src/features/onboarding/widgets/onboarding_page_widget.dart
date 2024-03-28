@@ -3,9 +3,9 @@ import 'package:smart_fridge/src/features/authentication/data/models/onboarding/
 
 class OnboardingPageWidget extends StatefulWidget {
   const OnboardingPageWidget({
-    super.key,
+    Key? key,
     required this.model,
-  });
+  }) : super(key: key);
 
   final OnboardingModel model;
 
@@ -119,13 +119,7 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              image: AssetImage(widget.model.image),
-              height: size.height * 0.4,
-            ),
-          ),
+          // Removed Image widget
           Column(
             children: [
               FittedBox(
@@ -156,5 +150,11 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget>
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
