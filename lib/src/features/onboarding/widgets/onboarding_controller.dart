@@ -77,4 +77,5 @@ void onPageChangeCallback(int index) {
   currentPageIndex.value = index;
 }
 
-void skipPage() {}}
+void skipPage() {}
+}

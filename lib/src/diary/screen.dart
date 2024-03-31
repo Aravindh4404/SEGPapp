@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<dynamic>> detectObjects(File image) async {
-  final uri = Uri.parse('http://192.168.217.57:5000/detect_objects'); // Make sure to use the correct IP
+  final uri = Uri.parse('https://young-fortress-42528-7ad25030c3d2.herokuapp.com/detect_objects'); // Make sure to use the correct IP
   var request = http.MultipartRequest('POST', uri)
     ..files.add(await http.MultipartFile.fromPath('file', image.path));
 
