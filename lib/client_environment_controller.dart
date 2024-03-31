@@ -23,7 +23,6 @@ class AppClientEnvironmentController extends StatefulWidget {
   @override
   _AppClientEnvironmentControllerState createState() =>
       _AppClientEnvironmentControllerState();
-      
 }
 
 class _AppClientEnvironmentControllerState
@@ -246,55 +245,6 @@ class _AppClientEnvironmentControllerState
     }
   }
 
-  void changeIndex(int index) {
-  pageAnimationController?.reverse().then<dynamic>((data) {
-    if (!mounted) {
-      return;
-    }
-Future<void> navigateAndDisplaySelection(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => GroceryScreen()),
-    );
-
-    // Check if the result is not null and update the state
-    if (result != null) {
-      setState(() {
-        tabBody = DesignCourseHomeScreen(selectedIngredients: result);
-      });
-    }
-  }
-    setState(() {
-      switch (index) {
-       case 0:
-        tabBody = MyHomePage(
-        animationController: pageAnimationController,
-        onScroll: toggleNavBarVisibility,
-        );
-        break;
-      case 1:
-        tabBody = GroceryScreen();
-        break;
-      case 2:
-        tabBody = NotificationScreen();
-        break;
-      case 3:
-        if (index == 1) { // Assuming index 1 is for GroceryScreen
-            navigateAndDisplaySelection(context);
-          }
-           tabBody = DesignCourseHomeScreen(
-            selectedIngredients: selectedIngredients,
-          );
-          break;
-        default:
-          // Default case
-          break;
-      }
-    });
-  });
-}
-
-
   Widget navigationBar() {
     return Column(
       children: <Widget>[
@@ -304,40 +254,35 @@ Future<void> navigateAndDisplaySelection(BuildContext context) async {
         AppNavigationBarView(
           navigationBarIcons: navigationBarIcons,
           addClick: () {},
-          changeIndex: changeIndex,
-          // (int index) {
-          //   pageAnimationController?.reverse().then<dynamic>((data) {
-          //     if (!mounted) {
-          //       return;
-          //     }
+          changeIndex: (int index) {
+            pageAnimationController?.reverse().then<dynamic>((data) {
+              if (!mounted) {
+                return;
+              }
 
-          //     setState(() {
-          //       switch (index) {
-                  // case 0:
-                  //   tabBody = MyHomePage(
-                  //     animationController: pageAnimationController,
-                  //     onScroll: toggleNavBarVisibility,
-                  //   );
-                  //   break;
-                  // case 1:
-                  //   tabBody = GroceryScreen();
-                  //   break;
-                  // case 2:
-                  //   tabBody = NotificationScreen();
-                  //   break;
-                  // case 3:
-          //           // List<String> selectedIngredients = ['Apple', 'Banana'];
-
-          //           tabBody = DesignCourseHomeScreen(
-          //             selectedIngredients: selectedIngredients,
-          //           );
-          //           break;
-          //         default:
-          //           break;
-          //       }
-          //     });
-          //   });
-          // },
+              setState(() {
+                switch (index) {
+                  case 0:
+                    tabBody = MyHomePage(
+                      animationController: pageAnimationController,
+                      onScroll: toggleNavBarVisibility,
+                    );
+                    break;
+                  case 1:
+                    tabBody = GroceryScreen();
+                    break;
+                  case 2:
+                    tabBody = NotificationScreen();
+                    break;
+                  case 3:
+                    tabBody = DesignCourseHomeScreen();
+                    break;
+                  default:
+                    break;
+                }
+              });
+            });
+          },
         ),
       ],
     );

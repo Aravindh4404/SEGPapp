@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Pick Image'),
             ),
             ElevatedButton(
- // This replaces the existing code in your `onPressed` method for the 'Detect Objects' button
+ // This replaces the existing code in your onPressed method for the 'Detect Objects' button
 onPressed: () async {
   if (selectedImage != null) {
     try {
@@ -121,3 +121,5 @@ DetectedTagsRepository.instance.tags = tags;
     );
   }
 }
+
+// https://young-fortress-42528-7ad25030c3d2.herokuapp.com/detect_objects
