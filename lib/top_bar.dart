@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fridge/src/config/themes/app_theme.dart';
 
-import 'grocery_listings/calendar_popup_view.dart';
 
 class AppClientTopBar extends StatefulWidget {
   const AppClientTopBar({
@@ -187,22 +186,27 @@ class _AppClientTopBarState extends State<AppClientTopBar>
   }
 
   void showDemoDialog({BuildContext? context}) {
-    showDialog<dynamic>(
-      context: context!,
-      builder: (BuildContext context) => CalendarPopupView(
-        barrierDismissible: true,
-        minimumDate: DateTime.now(),
-        //  maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
-        initialEndDate: endDate,
-        initialStartDate: startDate,
-        onApplyClick: (DateTime startData, DateTime endData) {
-          setState(() {
-            startDate = startData;
-            endDate = endData;
-          });
-        },
-        onCancelClick: () {},
-      ),
-    );
-  }
+  showDialog<dynamic>(
+    context: context!,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text("Demo Dialog"),
+      content: Text("This is a demo dialog."),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // Cancel the dialog
+          },
+          child: Text("Cancel"),
+        ),
+        TextButton(
+          onPressed: () {
+            // Do something when "OK" is pressed
+          },
+          child: Text("OK"),
+        ),
+      ],
+    ),
+  );
+}
+
 }
