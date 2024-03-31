@@ -1,0 +1,9 @@
+Map<String, List<String>> mealSuggestionsMap = {
+  'Apple': ['Apple Juice', 'Apple Chips'],
+  'Avocado': ['Guacamole', 'Avocado Toast'],
+  'Banana': ['Banana Bread', 'Banana Ice Cream'],
+  'Bean Sprouts': ['Bean Sprout Stir-Fry', 'Bean Sprout Salad'],
+  'Blueberries': ['Blueberry Muffins', 'Blueberry Smoothie'],
+  // Add other ingredients and their corresponding meals
+  'Watermelon': ['Watermelon Feta Salad', 'Watermelon Juice'],
+};
